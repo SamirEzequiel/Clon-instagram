@@ -4,101 +4,145 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instagram - Feed</title>
-    <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
-<body>
-    <nav class="navbar navbar-light bg-light fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png" alt="Instagram" height="29">
-            </a>
-            <div class="d-flex">
-                <button class="btn btn-outline-primary me-2" type="button">Iniciar sesión</button>
-                <button class="btn btn-primary" type="button">Registrarse</button>
+<body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav class="bg-white border-b border-gray-200 fixed w-full z-10">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="flex justify-between items-center h-14">
+                <div class="flex items-center">
+                    <img src="https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png" alt="Instagram" class="h-8">
+                </div>
+                <div class="flex space-x-4">
+                    <button class="text-sm font-medium text-blue-500 hover:text-blue-600">Iniciar sesión</button>
+                    <button class="text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 px-4 py-1 rounded">Registrarse</button>
+                </div>
             </div>
         </div>
     </nav>
 
-    <div class="container mt-5 pt-5">
+    <!-- Feed -->
+    <div class="max-w-4xl mx-auto pt-16 pb-8 px-4">
         <!-- Primera publicación -->
-        <div class="card mb-4">
-            <div class="card-header bg-white d-flex align-items-center">
-                <img src="https://via.placeholder.com/40" class="rounded-circle me-2" alt="Perfil">
-                <div>
-                    <h6 class="mb-0">usuario1</h6>
-                    <small class="text-muted">Ciudad, País</small>
+        <div class="bg-white border border-gray-200 rounded mb-8">
+            <!-- Header de la publicación -->
+            <div class="flex items-center p-4">
+                <img src="https://via.placeholder.com/40" class="w-10 h-10 rounded-full" alt="Perfil">
+                <div class="ml-3">
+                    <p class="font-semibold text-sm">usuario1</p>
+                    <p class="text-gray-500 text-xs">Ciudad, País</p>
                 </div>
-                <div class="ms-auto">
+                <button class="ml-auto text-gray-500">
                     <i class="fas fa-ellipsis-h"></i>
-                </div>
+                </button>
             </div>
-            <img src="https://via.placeholder.com/600x600" class="card-img-top" alt="Publicación">
-            <div class="card-body">
-                <div class="d-flex mb-2">
-                    <i class="far fa-heart fa-2x me-3"></i>
-                    <i class="far fa-comment fa-2x me-3"></i>
-                    <i class="far fa-paper-plane fa-2x"></i>
-                    <i class="far fa-bookmark fa-2x ms-auto"></i>
+
+            <!-- Imagen -->
+            <img src="https://via.placeholder.com/600x600" class="w-full" alt="Publicación">
+
+            <!-- Acciones -->
+            <div class="p-4">
+                <div class="flex items-center mb-3">
+                    <button class="text-2xl mr-4 hover:text-gray-600">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <button class="text-2xl mr-4 hover:text-gray-600">
+                        <i class="far fa-comment"></i>
+                    </button>
+                    <button class="text-2xl hover:text-gray-600">
+                        <i class="far fa-paper-plane"></i>
+                    </button>
+                    <button class="ml-auto text-2xl hover:text-gray-600">
+                        <i class="far fa-bookmark"></i>
+                    </button>
                 </div>
-                <p class="card-text"><strong>usuario1</strong> ¡Hermoso día en la playa! 🌊☀️ #verano #playa #vacaciones</p>
-                <small class="text-muted">Hace 2 horas</small>
+
+                <!-- Descripción -->
+                <p class="text-sm">
+                    <span class="font-semibold">usuario1</span> ¡Hermoso día en la playa! 🌊☀️ #verano #playa #vacaciones
+                </p>
+                <p class="text-gray-500 text-xs mt-2">Hace 2 horas</p>
             </div>
         </div>
 
         <!-- Segunda publicación -->
-        <div class="card mb-4">
-            <div class="card-header bg-white d-flex align-items-center">
-                <img src="https://via.placeholder.com/40" class="rounded-circle me-2" alt="Perfil">
-                <div>
-                    <h6 class="mb-0">usuario2</h6>
-                    <small class="text-muted">Ciudad, País</small>
+        <div class="bg-white border border-gray-200 rounded mb-8">
+            <div class="flex items-center p-4">
+                <img src="https://via.placeholder.com/40" class="w-10 h-10 rounded-full" alt="Perfil">
+                <div class="ml-3">
+                    <p class="font-semibold text-sm">Camila Gutierrez</p>
+                    <p class="text-gray-500 text-xs">Ciudad, País</p>
                 </div>
-                <div class="ms-auto">
+                <button class="ml-auto text-gray-500">
                     <i class="fas fa-ellipsis-h"></i>
-                </div>
+                </button>
             </div>
-            <img src="https://via.placeholder.com/600x600" class="card-img-top" alt="Publicación">
-            <div class="card-body">
-                <div class="d-flex mb-2">
-                    <i class="far fa-heart fa-2x me-3"></i>
-                    <i class="far fa-comment fa-2x me-3"></i>
-                    <i class="far fa-paper-plane fa-2x"></i>
-                    <i class="far fa-bookmark fa-2x ms-auto"></i>
+
+            <img src="https://via.placeholder.com/600x600" class="w-full" alt="Publicación">
+
+            <div class="p-4">
+                <div class="flex items-center mb-3">
+                    <button class="text-2xl mr-4 hover:text-gray-600">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <button class="text-2xl mr-4 hover:text-gray-600">
+                        <i class="far fa-comment"></i>
+                    </button>
+                    <button class="text-2xl hover:text-gray-600">
+                        <i class="far fa-paper-plane"></i>
+                    </button>
+                    <button class="ml-auto text-2xl hover:text-gray-600">
+                        <i class="far fa-bookmark"></i>
+                    </button>
                 </div>
-                <p class="card-text"><strong>Camila Gutierrez</strong> Disfrutando de un delicioso café ☕️ #café #mañana #feliz</p>
-                <small class="text-muted">Hace 4 horas</small>
+
+                <p class="text-sm">
+                    <span class="font-semibold">Camila Gutierrez</span> Disfrutando de un delicioso café ☕️ #café #mañana #feliz
+                </p>
+                <p class="text-gray-500 text-xs mt-2">Hace 4 horas</p>
             </div>
         </div>
 
         <!-- Tercera publicación -->
-        <div class="card mb-4">
-            <div class="card-header bg-white d-flex align-items-center">
-                <img src="https://via.placeholder.com/40" class="rounded-circle me-2" alt="Perfil">
-                <div>
-                    <h6 class="mb-0">usuario3</h6>
-                    <small class="text-muted">Ciudad, País</small>
+        <div class="bg-white border border-gray-200 rounded mb-8">
+            <div class="flex items-center p-4">
+                <img src="https://via.placeholder.com/40" class="w-10 h-10 rounded-full" alt="Perfil">
+                <div class="ml-3">
+                    <p class="font-semibold text-sm">usuario3</p>
+                    <p class="text-gray-500 text-xs">Ciudad, País</p>
                 </div>
-                <div class="ms-auto">
+                <button class="ml-auto text-gray-500">
                     <i class="fas fa-ellipsis-h"></i>
-                </div>
+                </button>
             </div>
-            <img src="https://via.placeholder.com/600x600" class="card-img-top" alt="Publicación">
-            <div class="card-body">
-                <div class="d-flex mb-2">
-                    <i class="far fa-heart fa-2x me-3"></i>
-                    <i class="far fa-comment fa-2x me-3"></i>
-                    <i class="far fa-paper-plane fa-2x"></i>
-                    <i class="far fa-bookmark fa-2x ms-auto"></i>
+
+            <img src="https://via.placeholder.com/600x600" class="w-full" alt="Publicación">
+
+            <div class="p-4">
+                <div class="flex items-center mb-3">
+                    <button class="text-2xl mr-4 hover:text-gray-600">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <button class="text-2xl mr-4 hover:text-gray-600">
+                        <i class="far fa-comment"></i>
+                    </button>
+                    <button class="text-2xl hover:text-gray-600">
+                        <i class="far fa-paper-plane"></i>
+                    </button>
+                    <button class="ml-auto text-2xl hover:text-gray-600">
+                        <i class="far fa-bookmark"></i>
+                    </button>
                 </div>
-                <p class="card-text"><strong>usuario3</strong> Nuevo proyecto en proceso 🎨 #arte #creatividad #diseño</p>
-                <small class="text-muted">Hace 6 horas</small>
+
+                <p class="text-sm">
+                    <span class="font-semibold">usuario3</span> Nuevo proyecto en proceso 🎨 #arte #creatividad #diseño
+                </p>
+                <p class="text-gray-500 text-xs mt-2">Hace 6 horas</p>
             </div>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 </body>
 </html>

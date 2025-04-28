@@ -1,0 +1,15 @@
+[
+    {
+      "id": 1,
+      "username": "samir",
+      "caption": "Mi primer post!",
+      "imageUrl": "https://via.placeholder.com/150"
+    },
+    {
+      "id": 2,
+      "username": "lucia",
+      "caption": "Hermoso día 🌞",
+      "imageUrl": "https://via.placeholder.com/150"
+    }
+  ]
+  
