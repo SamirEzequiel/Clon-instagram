@@ -9,140 +9,64 @@
 </head>
 
 <body class="bg-gray-50">
-    <!-- Navbar -->
-    <nav class="bg-white border-b border-gray-200 fixed w-full z-10">
-        <div class="max-w-4xl mx-auto px-4">
-            <div class="flex justify-between items-center h-14">
-                <div class="flex items-center">
-                    <img src="https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png" alt="Instagram" class="h-8">
-                </div>
-                <div class="flex space-x-4">
-                    <button class="text-sm font-medium text-blue-500 hover:text-blue-600">Iniciar sesión</button>
-                    <button class="text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 px-4 py-1 rounded">Registrarse</button>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <!-- Botón flotante para crear nueva publicación -->
+    <button
+        onclick="openNewPostModal()"
+        class="fixed bottom-4 right-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300 z-50 flex items-center justify-center">
+        <i class="fas fa-plus text-xl"></i>
+    </button>
 
-    <!-- Feed -->
-    <div class="max-w-4xl mx-auto pt-16 pb-8 px-4">
-        <!-- Primera publicación -->
-        <div class="bg-white border border-gray-200 rounded mb-8">
-            <!-- Header de la publicación -->
-            <div class="flex items-center p-4">
-                <img src="https://via.placeholder.com/40" class="w-10 h-10 rounded-full" alt="Perfil">
-                <div class="ml-3">
-                    <p class="font-semibold text-sm">usuario1</p>
-                    <p class="text-gray-500 text-xs">Ciudad, País</p>
-                </div>
-                <button class="ml-auto text-gray-500">
-                    <i class="fas fa-ellipsis-h"></i>
+    <!-- Modal para nueva publicación -->
+    <div id="newPostModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-lg w-full p-6 relative">
+            <div class="border-b pb-3 mb-4 flex justify-between items-center">
+                <h3 class="text-xl font-semibold text-gray-900">Nueva Publicación</h3>
+                <button onclick="closeNewPostModal()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
                 </button>
             </div>
 
-            <!-- Imagen -->
-            <img src="https://via.placeholder.com/600x600" class="w-full" alt="Publicación">
-
-            <!-- Acciones -->
-            <div class="p-4">
-                <div class="flex items-center mb-3">
-                    <button class="text-2xl mr-4 hover:text-gray-600">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <button class="text-2xl mr-4 hover:text-gray-600">
-                        <i class="far fa-comment"></i>
-                    </button>
-                    <button class="text-2xl hover:text-gray-600">
-                        <i class="far fa-paper-plane"></i>
-                    </button>
-                    <button class="ml-auto text-2xl hover:text-gray-600">
-                        <i class="far fa-bookmark"></i>
-                    </button>
+            <form id="newPostForm" class="space-y-4">
+                <!-- Preview de la imagen -->
+                <div class="relative w-full h-72 bg-gray-100 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-300 hover:border-gray-400 transition-colors">
+                    <img id="imagePreview" class="hidden absolute inset-0 w-full h-full object-cover rounded-lg">
+                    <div id="uploadPrompt" class="text-center">
+                        <i class="fas fa-image text-4xl text-gray-400 mb-2"></i>
+                        <p class="text-gray-500">Haz clic para seleccionar una imagen</p>
+                    </div>
+                    <input type="file" 
+                           id="imageInput" 
+                           accept="image/*" 
+                           class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                           onchange="previewImage(this)">
                 </div>
 
                 <!-- Descripción -->
-                <p class="text-sm">
-                    <span class="font-semibold">usuario1</span> ¡Hermoso día en la playa! 🌊☀️ #verano #playa #vacaciones
-                </p>
-                <p class="text-gray-500 text-xs mt-2">Hace 2 horas</p>
-            </div>
-        </div>
-
-        <!-- Segunda publicación -->
-        <div class="bg-white border border-gray-200 rounded mb-8">
-            <div class="flex items-center p-4">
-                <img src="https://via.placeholder.com/40" class="w-10 h-10 rounded-full" alt="Perfil">
-                <div class="ml-3">
-                    <p class="font-semibold text-sm">Camila Gutierrez</p>
-                    <p class="text-gray-500 text-xs">Ciudad, País</p>
+                <div>
+                    <textarea
+                        id="description"
+                        placeholder="Escribe una descripción..."
+                        class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none h-24"
+                    ></textarea>
                 </div>
-                <button class="ml-auto text-gray-500">
-                    <i class="fas fa-ellipsis-h"></i>
+
+                <!-- Botón de publicar -->
+                <button
+                    type="submit"
+                    class="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-2 rounded-lg hover:opacity-90 transition-opacity font-semibold"
+                >
+                    Publicar
                 </button>
-            </div>
-
-            <img src="https://via.placeholder.com/600x600" class="w-full" alt="Publicación">
-
-            <div class="p-4">
-                <div class="flex items-center mb-3">
-                    <button class="text-2xl mr-4 hover:text-gray-600">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <button class="text-2xl mr-4 hover:text-gray-600">
-                        <i class="far fa-comment"></i>
-                    </button>
-                    <button class="text-2xl hover:text-gray-600">
-                        <i class="far fa-paper-plane"></i>
-                    </button>
-                    <button class="ml-auto text-2xl hover:text-gray-600">
-                        <i class="far fa-bookmark"></i>
-                    </button>
-                </div>
-
-                <p class="text-sm">
-                    <span class="font-semibold">Camila Gutierrez</span> Disfrutando de un delicioso café ☕️ #café #mañana #feliz
-                </p>
-                <p class="text-gray-500 text-xs mt-2">Hace 4 horas</p>
-            </div>
-        </div>
-
-        <!-- Tercera publicación -->
-        <div class="bg-white border border-gray-200 rounded mb-8">
-            <div class="flex items-center p-4">
-                <img src="https://via.placeholder.com/40" class="w-10 h-10 rounded-full" alt="Perfil">
-                <div class="ml-3">
-                    <p class="font-semibold text-sm">usuario3</p>
-                    <p class="text-gray-500 text-xs">Ciudad, País</p>
-                </div>
-                <button class="ml-auto text-gray-500">
-                    <i class="fas fa-ellipsis-h"></i>
-                </button>
-            </div>
-
-            <img src="https://via.placeholder.com/600x600" class="w-full" alt="Publicación">
-
-            <div class="p-4">
-                <div class="flex items-center mb-3">
-                    <button class="text-2xl mr-4 hover:text-gray-600">
-                        <i class="far fa-heart"></i>
-                    </button>
-                    <button class="text-2xl mr-4 hover:text-gray-600">
-                        <i class="far fa-comment"></i>
-                    </button>
-                    <button class="text-2xl hover:text-gray-600">
-                        <i class="far fa-paper-plane"></i>
-                    </button>
-                    <button class="ml-auto text-2xl hover:text-gray-600">
-                        <i class="far fa-bookmark"></i>
-                    </button>
-                </div>
-
-                <p class="text-sm">
-                    <span class="font-semibold">usuario3</span> Nuevo proyecto en proceso 🎨 #arte #creatividad #diseño
-                </p>
-                <p class="text-gray-500 text-xs mt-2">Hace 6 horas</p>
-            </div>
+            </form>
         </div>
     </div>
+
+    <div id="feed" class="feed-container max-w-2xl mx-auto pt-4">
+        <!-- El contenido del feed se cargará dinámicamente aquí -->
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="app.js"></script>
+    <script src="js/new-post.js"></script>
 </body>
 </html>

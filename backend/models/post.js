@@ -1,23 +1,26 @@
 import mongoose from 'mongoose';
 
-// Definimos el esquema de un post
 const PostSchema = new mongoose.Schema({
-    // ...otros campos...
-    likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
-    comments: [{
-      user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-      text: String,
-      createdAt: { type: Date, default: Date.now }
-    }],
-    // ...otros campos...
-  });
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
+  content: {
+    type: String,
+    required: true,
+  },
+  imageUrl: {
+    type: String,
+    default: '',
+  },
+  likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }], // <--- ESTA LÍNEA AGREGA EL CAMPO DE LIKES
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
 
-const Post = mongoose.model('Post', postSchema);
+const Post = mongoose.model('Post', PostSchema);
 
-const posts = await Post.find()
-  .sort({ createdAt: -1 })
-  .populate('userId', 'username avatarUrl')
-  .populate('comments.user', 'username');
-  
 export default Post;
-

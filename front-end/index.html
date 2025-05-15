@@ -15,18 +15,20 @@
                 <h1 class="text-4xl font-serif">Instagram</h1>
             </div>
             
-            <form class="space-y-4">
+            <form id="loginForm" class="space-y-4">
                 <div>
-                    <input type="text" class="w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded text-sm" placeholder="Teléfono, usuario o correo electrónico"/>
+                    <input type="text" id="loginEmailOrUsername" class="w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded text-sm" placeholder="Correo electrónico o nombre de usuario" required/>
                 </div>
                 <div>
-                    <input type="password" class="w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded text-sm" placeholder="Contraseña"/>
+                    <input type="password" id="loginPassword" class="w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded text-sm" placeholder="Contraseña" required/>
                 </div>
                 <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-1 rounded text-sm">
                     Iniciar sesión
                 </button>
             </form>
             
+            <div id="loginMessage"></div>
+
             <div class="my-4">
                 <div class="flex items-center">
                     <div class="flex-grow border-t border-gray-300"></div>
@@ -47,5 +49,53 @@
             <p class="text-sm">¿No tienes una cuenta? <a href="#" class="text-blue-500 font-medium">Regístrate</a></p>
         </div>
     </div>
+
+    <script src="js/auth.js"></script>
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const form = document.getElementById('loginForm');
+          const messageDiv = document.getElementById('loginMessage');
+        
+          if (form) {
+            form.onsubmit = async (e) => {
+              e.preventDefault();
+              const emailOrUsername = document.getElementById('loginEmailOrUsername').value;
+              const password = document.getElementById('loginPassword').value;
+        
+              if (!emailOrUsername || !password) {
+                messageDiv.textContent = 'Por favor, completa todos los campos.';
+                messageDiv.className = 'text-red-500 text-center text-sm';
+                return;
+              }
+        
+              try {
+                const response = await fetch('http://localhost:5000/api/login', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ emailOrUsername, password })
+                });
+                const data = await response.json();
+                if (response.ok) {
+                  messageDiv.textContent = '¡Login exitoso! Redirigiendo...';
+                  messageDiv.className = 'text-green-600 text-center text-sm';
+                  if (data.userId && data.username) {
+                    setCurrentUser({ id: data.userId, username: data.username });
+                  }
+                  setTimeout(() => {
+                    window.location.href = './feed.html';
+                  }, 1000);
+                } else {
+                  messageDiv.textContent = data.message || 'Error al iniciar sesión';
+                  messageDiv.className = 'text-red-500 text-center text-sm';
+                }
+              } catch (error) {
+                messageDiv.textContent = 'Error de conexión con el servidor';
+                messageDiv.className = 'text-red-500 text-center text-sm';
+              }
+            };
+          }
+        });
+    </script>
 </body>
 </html>
