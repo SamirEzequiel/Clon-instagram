@@ -87,9 +87,9 @@ Este proyecto está bajo la Licencia MIT.
 **Tu Nombre** - [@tu-usuario](https://github.com/tu-usuario)
 
 ## 📞 Contacto
-- Email: [tu-email@ejemplo.com](mailto:tu-email@ejemplo.com)
-- LinkedIn: [Tu Nombre](https://linkedin.com/in/tu-perfil)
-- Portfolio: [tu-portfolio.com](https://tu-portfolio.com)
+- Email: samirgoede35@gmail.com
+- LinkedIn: [Samir Goede](https://www.linkedin.com/in/samir-goede-a96b62290/)
+- Portfolio: [SamirEzequiel](https://github.com/SamirEzequiel)
 
 ¿Tienes dudas? ¡No dudes en abrir un issue en el repositorio! 🤝
 
