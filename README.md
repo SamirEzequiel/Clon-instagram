@@ -84,11 +84,17 @@ clon-instagram/
 Este proyecto está bajo la Licencia MIT.
 
 ## 👨‍💻 Autor
-**Tu Nombre** - [@tu-usuario](https://github.com/tu-usuario)
+**Samir Goede** - [@tu-usuario](https://github.com/tu-usuario)
 
 ## 📞 Contacto
-- Email: [tu-email@ejemplo.com](mailto:tu-email@ejemplo.com)
-- LinkedIn: [Tu Nombre](https://linkedin.com/in/tu-perfil)
-- Portfolio: [tu-portfolio.com](https://tu-portfolio.com)
+<<<<<<< HEAD
+- Email: samirgoede35@gmail.com  
+- LinkedIn: [Samir Goede](https://www.linkedin.com/in/samir-goede-a96b62290/)  
+- Portfolio: [SamirEzequiel](https://github.com/SamirEzequiel/Portafolio)
 
 ¿Tienes dudas? ¡No dudes en abrir un issue en el repositorio! 🤝
+
+## 📝 Licencia  
+Este proyecto está bajo la Licencia MIT.
+
+>>>>>>> 3a69a753e2887eff5371be1955fff05e233fea89
