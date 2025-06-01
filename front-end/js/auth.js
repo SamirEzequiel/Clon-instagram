@@ -1,20 +1,35 @@
-// Manejo de la sesión del usuario
-const currentUser = {
-    id: "680eedffe1b02cca8875c17a",
-    username: "juan",
-    avatarUrl: null
-};
+// Funciones para manejar la autenticación del usuario
+function setCurrentUser(user) {
+    console.log('Guardando usuario:', user);
+    if (user) {
+        localStorage.setItem('currentUser', JSON.stringify(user));
+    } else {
+        localStorage.removeItem('currentUser');
+    }
+}
 
-// Función para obtener el usuario actual
 function getCurrentUser() {
-    return currentUser;
+    const user = localStorage.getItem('currentUser');
+    const parsedUser = user ? JSON.parse(user) : null;
+    console.log('Usuario actual:', parsedUser);
+    return parsedUser;
 }
 
-// Función para verificar si hay un usuario en sesión
 function isLoggedIn() {
-    return true; // Por ahora siempre retorna true ya que tenemos un usuario fijo
+    const user = getCurrentUser();
+    const isLogged = user !== null;
+    console.log('¿Usuario logueado?:', isLogged);
+    return isLogged;
 }
 
-// Exportar las funciones para usarlas en otros archivos
+function logout() {
+    console.log('Cerrando sesión');
+    setCurrentUser(null);
+    window.location.href = 'index.html';
+}
+
+// Exportar las funciones para uso global
+window.setCurrentUser = setCurrentUser;
 window.getCurrentUser = getCurrentUser;
 window.isLoggedIn = isLoggedIn;
+window.logout = logout;

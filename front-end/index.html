@@ -46,12 +46,12 @@
         </div>
 
         <div class="w-80 bg-white border border-gray-300 p-4 text-center">
-            <p class="text-sm">¿No tienes una cuenta? <a href="#" class="text-blue-500 font-medium">Regístrate</a></p>
+            <p class="text-sm">¿No tienes una cuenta? <a href="registro.html" class="text-blue-500 font-medium">Regístrate</a></p>
         </div>
     </div>
 
-    <script src="js/auth.js"></script>
-    <script src="app.js"></script>
+    <script src="./js/auth.js"></script>
+    <script src="./app.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
           const form = document.getElementById('loginForm');
@@ -72,25 +72,37 @@
               try {
                 const response = await fetch('http://localhost:5000/api/login', {
                   method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
+                  headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                  },
                   body: JSON.stringify({ emailOrUsername, password })
                 });
+                
+                if (!response.ok) {
+                  const errorData = await response.json();
+                  throw new Error(errorData.message || 'Error al iniciar sesión');
+                }
+                
                 const data = await response.json();
-                if (response.ok) {
-                  messageDiv.textContent = '¡Login exitoso! Redirigiendo...';
-                  messageDiv.className = 'text-green-600 text-center text-sm';
-                  if (data.userId && data.username) {
-                    setCurrentUser({ id: data.userId, username: data.username });
-                  }
+                messageDiv.textContent = '¡Login exitoso! Redirigiendo...';
+                messageDiv.className = 'text-green-600 text-center text-sm';
+                
+                if (data.userId && data.username) {
+                  setCurrentUser({ id: data.userId, username: data.username });
                   setTimeout(() => {
-                    window.location.href = './feed.html';
+                    window.location.href = 'feed.html';
                   }, 1000);
                 } else {
-                  messageDiv.textContent = data.message || 'Error al iniciar sesión';
-                  messageDiv.className = 'text-red-500 text-center text-sm';
+                  throw new Error('Datos de usuario incompletos');
                 }
               } catch (error) {
-                messageDiv.textContent = 'Error de conexión con el servidor';
+                console.error('Error en login:', error);
+                if (error.name === 'TypeError' && error.message === 'Failed to fetch') {
+                  messageDiv.textContent = 'No se pudo conectar con el servidor. Por favor, asegúrate de que el servidor esté corriendo en http://localhost:5000';
+                } else {
+                  messageDiv.textContent = error.message || 'Error de conexión con el servidor';
+                }
                 messageDiv.className = 'text-red-500 text-center text-sm';
               }
             };

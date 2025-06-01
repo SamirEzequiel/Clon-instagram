@@ -68,13 +68,6 @@ document.getElementById('newPostForm').addEventListener('submit', async function
         return;
     }
 
-    // Crear FormData para enviar la imagen
-    const formData = new FormData();
-    formData.append('image', imageFile);
-    formData.append('description', description);
-    formData.append('userId', currentUser.id);
-    formData.append('username', currentUser.username);
-
     // Mostrar indicador de carga
     const submitButton = e.target.querySelector('button[type="submit"]');
     const originalButtonText = submitButton.innerHTML;
@@ -82,17 +75,41 @@ document.getElementById('newPostForm').addEventListener('submit', async function
     submitButton.disabled = true;
     
     try {
-        const currentUser = getCurrentUser();
         console.log('Enviando formulario...');
         console.log('Usuario actual:', currentUser);
-        console.log('FormData contenido:', Object.fromEntries(formData.entries()));
+        
+        // Primero subir la imagen
+        const imageFormData = new FormData();
+        imageFormData.append('image', imageFile);
+        
+        const imageResponse = await fetch('http://localhost:5000/api/upload', {
+            method: 'POST',
+            body: imageFormData
+        });
+        
+        if (!imageResponse.ok) {
+            throw new Error('Error al subir la imagen');
+        }
+        
+        const imageData = await imageResponse.json();
+        
+        // Luego crear el post con la URL de la imagen
+        const postData = {
+            description: description,
+            userId: currentUser.id,
+            username: currentUser.username,
+            imageUrl: imageData.imageUrl
+        };
+        
+        console.log('Datos del post:', postData);
         
         const response = await fetch('http://localhost:5000/api/posts', {
             method: 'POST',
-            body: formData,
             headers: {
+                'Content-Type': 'application/json',
                 'Accept': 'application/json'
-            }
+            },
+            body: JSON.stringify(postData)
         });
         
         console.log('Respuesta recibida:', response);

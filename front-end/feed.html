@@ -6,9 +6,56 @@
     <title>Instagram - Feed</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .options-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .options-menu {
+            position: absolute;
+            top: 45px;
+            right: 10px;
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 8px 0;
+            min-width: 120px;
+        }
+        .options-menu button {
+            width: 100%;
+            padding: 8px 16px;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .options-menu button:hover {
+            background: #f3f4f6;
+        }
+        .post-container {
+            position: relative;
+        }
+    </style>
 </head>
 
 <body class="bg-gray-50">
+    <script src="./js/auth.js"></script>
+    <script>
+        // Verificar si el usuario está autenticado
+        if (!isLoggedIn()) {
+            window.location.href = 'index.html';
+        }
+    </script>
     <!-- Botón flotante para crear nueva publicación -->
     <button
         onclick="openNewPostModal()"
@@ -65,8 +112,7 @@
         <!-- El contenido del feed se cargará dinámicamente aquí -->
     </div>
 
-    <script src="js/auth.js"></script>
-    <script src="app.js"></script>
+    <script src="./app.js"></script>
     <script src="js/new-post.js"></script>
 </body>
 </html>
